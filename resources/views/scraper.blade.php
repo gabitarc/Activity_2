@@ -2,15 +2,15 @@
 <html lang="en">
 <style>
     .wrapper > .card:first-child .card-header {
-        background-color: yellow;
+        background-color:  #ecc97e;
         color: white;
     }
     .wrapper > .card:nth-child(2) .card-header {
-        background-color: red;
+        background-color:  #f89280;
         color: white;
     }
     .wrapper > .card:nth-child(3) .card-header {
-        background-color: blue;
+        background-color:  #7fb3da;
         color: white;
     }
 </style>
@@ -23,20 +23,30 @@
 	<title>Laravel Scraper</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 offset-md-3 mt-5 wrapper">
-				@foreach($data as $key => $value)
-					<div class="card text-center">
-					<h4 class="card-header">{{ $key }}</h4>
-					<h4 class="card-body">
-						<p class="card-text">{{ $value }}</p>
-					</h4>
-				</div>
-
-				@endforeach
-
+	<div class="row">
+		<h3 align="center">Banco de Datos Actualizado </h3>
+		<h3 align="center">Coranavirus a nivel Mundial</h3>
+		<div class="col-md-6 offset-md-3 mt-5 wrapper">
+			@foreach($data as $key => $value)
+				<div class="card text-center">
+				@switch($key)
+				    @case('Coronavirus Cases:')
+				        <h4 class="card-header">Casos Confirmados de Coronavirus</h4>
+				        @break
+				    @case('Deaths:')
+				        <h4 class="card-header">Fallecidos</h4>
+				        @break
+				 
+				    @default
+				        <h4 class="card-header">Recuperados</h4>
+				@endswitch
+				<h4 class="card-body">
+					<p class="card-text">{{ $value }}</p>
+				</h4>
 			</div>
+
+			@endforeach
+
 		</div>
 	</div>
 </body>
